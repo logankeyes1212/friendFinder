@@ -1,75 +1,52 @@
-var friends = require("../data/friends");
-
+var userData = require("../data/friends");
 module.exports = function (app) {
 
-    app.get("/api/survey", function (req, res) {
-        res.json(friends)
-        console.log(friends)
-
-
+    app.get("/api/friends", function (req, res) {
+        res.json(userData);
     });
-    // console.log(friends[0].scores)
-    app.post("/api/survey", function (req, res) {
-       
-        // console.log(friends.push(req.body))
-        // friends.push(req.body);
-        
-        // console.log(req.body)
-       friends.length = [];
-        // takes in user input and converts scores into a total number
-        let scoreTotal = req.body.scores;
-        Number.parseInt(scoreTotal);
-        var totalIn = 0;
-        for (let i in scoreTotal) {
-            scoreTotal[i] = parseInt(scoreTotal[i], 10)
-            totalIn += scoreTotal[i]
-            // console.log(totalIn)
+    var comparisonUserTotalScore = 0;
+    var friendScores = [];
+
+    app.post("/api/friends", function (req, res) {
+        var currentUserScores = req.body.scores;
+
+        // console.log("Current scores: " + currentUserScores);
+        for (var i = 0; i < userData.length; i++) {
+            var comparisonUserScores = userData[i].scores;
+
+            comparisonUserTotalScore = calculateUserCompatibilityScore(currentUserScores, comparisonUserScores);
+
+            friendScores.push(comparisonUserTotalScore);
         }
-        // console.log(totalIn) 
-        // console.log(numbers)
-        // takes in friends.js and grabs the score 
-        // var sum = 0;
-       total = 0;
-       current = 0;
-       
-        for (let i = 0; i < friends.length; i++) {
-            let eachScore = friends[i].scores;
-            let totalOut = eachScore.reduce((total, current) => {
-                // console.log(current)
-                total += +current;
-                return total;
-            }, 0);
-        
-            // console.log(totalOut)
-            // console.log(difference(totalOut, totalIn))
-            if (difference(totalIn, totalOut) <= 5){
-                // friends = friends[i]
-                console.log(friends.push(req.body))
-                friends.push(req.body)
-                // return friends
-                res.json(true);
+        // console.log("friend scores: " + friendScores);
+        var index = 0;
+        var value = friendScores[0];
+
+        for (var i = 0; i < friendScores.length; i++) {
+            //   console.log("Value: " + friendScores[i]);
+            if (friendScores[i] < value) {
+                value = friendScores[i];
+                index = i;
             }
-        //    else{
-        //        res.json(false)
-        //    }
-             
-            }
-            // console.log(friends)
-        // }
-       
-        // console.log(difference(totalIn,totalOut))
-        // console.log(numbers)
-        // const counts = numbers;
-        // const goal = 5;
-        
-        // counts
-        //  .reduce((prev, curr) => Math.abs(curr - goal) < Math.abs(prev - goal) ? curr : prev);
-         
-        // console.log(req.body)
-        
+        }
+
+        //  console.log("Best friend is " + userData[index].name);
+        res.send(userData[index]);
+        userData.push(req.body);
     });
-}
-function difference(a,b) {
-    return Math.abs(a-b);
-}
+};
+var totalDifference = 0;
+
+function calculateUserCompatibilityScore(currentUserScores, comparisonUserScores) {
+
+    totalDifference = 0;
+
+    for (var i = 0; i < currentUserScores.length; i++) {
+
+        totalDifference += Math.abs(currentUserScores[i] - comparisonUserScores[i]);
+    }
+
+    //   console.log("total difference " + totalDifference);
+    return totalDifference;
+};
 
