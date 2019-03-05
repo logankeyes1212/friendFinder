@@ -1,7 +1,7 @@
 var friends = [
     {
     name: "Ahmed",
-    photo: "https://media.licdn.com/mpr/mpr/shrinknp_200_200/AAEAAQAAAAAAAAq7AAAAJDAwYzI4NTQ4LWYwZWUtNGFkYS1hNTYwLTZjYzkwY2ViZDA3OA.jpg",
+    photo: "https://www.stevensegallery.com/275/275",
     scores: [   
         1,
         1,
@@ -16,8 +16,8 @@ var friends = [
   ]
     },
     {
-        name: "jim",
-        photo: "https://media.licdn.com/mpr/mpr/shrinknp_200_200/AAEAAQAAAAAAAAq7AAAAJDAwYzI4NTQ4LWYwZWUtNGFkYS1hNTYwLTZjYzkwY2ViZDA3OA.jpg",
+        name: "Steven",
+        photo: "https://www.stevensegallery.com/275/275",
         scores: [   
             2,
             2,
@@ -31,8 +31,8 @@ var friends = [
             2
       ]
         },{
-            name: "john",
-            photo: "https://media.licdn.com/mpr/mpr/shrinknp_200_200/AAEAAQAAAAAAAAq7AAAAJDAwYzI4NTQ4LWYwZWUtNGFkYS1hNTYwLTZjYzkwY2ViZDA3OA.jpg",
+            name: "John",
+            photo: "https://fillmurray.com/275/275",
             scores: [   
                 3,
                 3,
@@ -46,8 +46,8 @@ var friends = [
                 3
           ]
             },{
-                name: "bill",
-                photo: "https://media.licdn.com/mpr/mpr/shrinknp_200_200/AAEAAQAAAAAAAAq7AAAAJDAwYzI4NTQ4LWYwZWUtNGFkYS1hNTYwLTZjYzkwY2ViZDA3OA.jpg",
+                name: "Bill",
+                photo: "https://fillmurray.com/275/275",
                 scores: [   
                     4,
                     4,
